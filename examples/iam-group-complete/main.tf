@@ -1,10 +1,13 @@
 ############
 # IAM users
 ############
+provider "aws" {
+  region = "ca-central-1"
+}
 module "iam_user1" {
   source = "../../modules/iam-user"
 
-  name = "user1"
+  name = "jbesona"
 
   create_iam_user_login_profile = false
   create_iam_access_key         = false
@@ -13,10 +16,31 @@ module "iam_user1" {
 module "iam_user2" {
   source = "../../modules/iam-user"
 
-  name = "user2"
+  name = "enketi"
 
   create_iam_user_login_profile = false
   create_iam_access_key         = false
+}
+
+module "iam_user3" {
+  source = "../../modules/iam-user"
+  name = "slegah"
+  create_iam_user_login_profile = false
+  create_iam_access_key  =  false
+}
+
+module "iam_user4" {
+  source = "../../modules/iam-user"
+  name = "bdoh"
+  create_iam_user_login_profile = false
+  create_iam_access_key  =  false
+}
+
+module "iam_user5" {
+  source = "../../modules/iam-user"
+  name = "bdanny"
+  create_iam_user_login_profile = false
+  create_iam_access_key  =  false
 }
 
 #############################################################################################
@@ -32,6 +56,10 @@ module "iam_group_complete" {
   group_users = [
     module.iam_user1.iam_user_name,
     module.iam_user2.iam_user_name,
+    module.iam_user3.iam_user_name,
+    module.iam_user4.iam_user_name,
+    module.iam_user5.iam_user_name,
+
   ]
 }
 
